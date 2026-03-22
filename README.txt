@@ -1,117 +1,111 @@
-# SES TRANSKRİPSİYON ARACI
-## Whisper AI ile Ses Dosyalarını Metne Dönüştürme
+# AUDIO TRANSCRIPTION TOOL
+## Converting Audio Files to Text with Whisper AI
 
 ---
 
-## GENEL BAKIŞ
+## OVERVIEW
 
-Bu araç, ses ve video dosyalarını otomatik olarak metne dönüştürür (transkribe eder).
-OpenAI'nin Whisper AI teknolojisini kullanır ve tamamen ücretsizdir.
+This tool automatically converts (transcribes) audio and video files to text.
+It uses OpenAI's Whisper AI technology and is completely free.
 
-**Özellikler:**
-- ✅ Tamamen offline çalışır (internet gerekmez)
-- ✅ 100+ dil desteği (Türkçe dahil)
-- ✅ Sınırsız kullanım
-- ✅ Toplu dosya işleme
-- ✅ Zaman damgalı çıktı
-- ✅ SRT altyazı formatı desteği
-- ✅ Yüksek doğruluk oranı
+**Features:**
+- ✅ Works completely offline (no internet required)
+- ✅ Supports 100+ languages ​​(including Turkish)
+- ✅ Unlimited use
+- ✅ Batch file processing
+- ✅ Timestamped output
+- ✅ SRT subtitle format support
+- ✅ High accuracy rate
 
 ---
 
-## KURULUM
+## INSTALLATION
 
-### Adım 1: Python Kurulumu
-Python 3.8 veya üzeri gereklidir.
-İndirmek için: https://www.python.org/downloads/
+### Step 1: Python Installation
+Python 3.8 or higher is required.
+To download: https://www.python.org/downloads/
 
-### Adım 2: Gerekli Paketleri Yükleyin
-Komut satırını açın ve şu komutları çalıştırın:
+### Step 2: Install Necessary Packages
+Open the command prompt and run the following commands:
 
 ```bash
 pip install openai-whisper
 pip install torch
 ```
+**Note:** The initial installation may require a 500MB-1GB download.
 
-**Not:** İlk kurulum 500MB-1GB indirme gerektirebilir.
-
-### Adım 3: Script'i İndirin
-`transkript.py` dosyasını bir klasöre kaydedin.
-
----
-
-## KULLANIM
-
-### Temel Kullanım
-
-```bash
-python transkript.py -i DOSYA_YOLU -o CIKTI_KLASORU
-```
-
-### Örnekler
-
-**1. Tek bir ses dosyasını transkribe et:**
-```bash
-python transkript.py -i ses.mp3 -o transkriptler/
-```
-
-**2. Klasördeki tüm ses dosyalarını işle:**
-```bash
-python transkript.py -i ses_klasoru/ -o transkriptler/
-```
-
-**3. Türkçe ses için (önerilen):**
-```bash
-python transkript.py -i ses.mp3 -o transkriptler/ -l tr
-```
-
-**4. Zaman damgalı transkript oluştur:**
-```bash
-python transkript.py -i ses.mp3 -o transkriptler/ -t
-```
-
-**5. Daha yüksek kalite (daha yavaş):**
-```bash
-python transkript.py -i ses.mp3 -o transkriptler/ -s medium
-```
-
-**6. Tüm seçenekler birlikte:**
-```bash
-python transkript.py -i ses_klasoru/ -o transkriptler/ -l tr -s medium -t
-```
+### Step 3: Download the Script
+Save the `trankript.py` file to a folder.
 
 ---
 
-## PARAMETRELERİN AÇIKLAMASI
+## USAGE
 
-### Zorunlu Parametreler:
-- `-i, --input`: Ses dosyası veya klasör yolu
-- `-o, --output`: Transkriptlerin kaydedileceği klasör
+### Basic Usage
 
-### Opsiyonel Parametreler:
+```bash
+python transkript.py -i FILE_PATH -o OUTPUT_FOLDER
+```
 
-**-s, --model-size** (Model boyutu)
-- `tiny` - En hızlı, düşük doğruluk (~1GB RAM, 32x daha hızlı)
-- `base` - Dengeli (Varsayılan) (~1GB RAM)
-- `small` - İyi doğruluk (~2GB RAM)
-- `medium` - Yüksek doğruluk (~5GB RAM) **[ÖNERİLEN]**
-- `large` - En yüksek doğruluk (~10GB RAM, en yavaş)
+### Examples
 
-**-l, --language** (Dil kodu)
-- Örnek: `tr` (Türkçe), `en` (İngilizce), `de` (Almanca)
-- Belirtilmezse otomatik tespit edilir
-- Dil belirtmek doğruluğu artırır
+**1. Transcribe a single audio file:**
+```bash
+python transkript.py -i audio.mp3 -o transcripts/
+```
 
-**-t, --timestamps** (Zaman damgaları)
-- Transkripte zaman bilgisi ekler
-- SRT altyazı dosyası oluşturur
-- Video editörleri ile uyumlu
+**2. Process all audio files in the folder:**
+```bash
+python transcript.py -i audio_folder/ -o transcripts/
+```
+**3. For Turkish audio (recommended):**
+```bash
+python transcript.py -i audio.mp3 -o transcripts/ -l tr
+```
+**4. Create a timestamped transcript:**
+```bash
+python transcript.py -i audio.mp3 -o transcripts/ -t
+```
+**5. Higher quality (slower):**
+```bash
+python transcript.py -i audio.mp3 -o transcripts/ -s medium
+```
+**6. All options together:**
+```bash
+python transcript.py -i audio_folder/ -o transcripts/ -l tr -s medium -t
+```
+
+---
+## DESCRIPTION OF PARAMETERS
+
+### Required Parameters:
+- `-i, --input`: Audio file or folder path
+- `-o, --output`: Folder where transcripts will be saved
+
+### Optional Parameters:
+
+**-s, --model-size** (Model size)
+- `tiny` - Fastest, low accuracy (~1GB RAM, 32x faster)
+- `base` - Balanced (Default) (~1GB RAM)
+- `small` - Good accuracy (~2GB RAM)
+- `medium` - High accuracy (~5GB RAM) **[RECOMMENDED]**
+- `large` - Highest accuracy (~10GB RAM, most (slow)
+
+**-l, --language** (Language code)
+- Example: `tr` (Turkish), `en` (English), `de` (German)
+- Automatically detected if not specified
+- Specifying the language improves accuracy
+
+**-t, --timestamps** (Timestamps)
+- Adds time information to the transcript
+- Creates an SRT subtitle file
+- Compatible with video editors
 
 ---
 
-## DESTEKLENEN DOSYA FORMATLARI
+## SUPPORTED FILE FORMATS
 
-**Ses Formatları:**
+**Audio Formats:**
 - MP3
 - WAV
 - M4A
@@ -120,203 +114,197 @@ python transkript.py -i ses_klasoru/ -o transkriptler/ -l tr -s medium -t
 - AAC
 - WMA
 
-**Video Formatları:**
-- MP4 (sadece ses kısmı işlenir)
+**Video Formats:**
+- MP4 (only the audio part is processed)
 
 ---
 
-## ÇIKTI DOSYALARI
+## OUTPUT FILES
 
-Script iki tip dosya oluşturur:
+The script creates two types of files:
 
-### 1. Metin Dosyası (.txt)
+### 1. Text File (.txt)
 ```
-Dosya: ornek_ses.mp3
-Tarih: 2024-12-08 14:30:00
-Tespit edilen dil: tr
+File: example_audio.mp3
+Date: 2024-12-08 14:30:00
+Detected language: tr
+===============================================================================
+
+=== TIME-STAMPED TRANSCRIPT === (optional)
+
+[00:00:00 - 00:00:05] Hello, this is a test recording. [00:00:05 - 00:00:10] We are transcribing using Whisper AI.
+
 ================================================================================
+=== FULL TEXT ===
 
-=== ZAMAN DAMGALI TRANSKRİPT === (opsiyonel)
-
-[00:00:00 - 00:00:05] Merhaba, bu bir test kaydıdır.
-[00:00:05 - 00:00:10] Whisper AI kullanarak transkripsiyon yapıyoruz.
-
-================================================================================
-
-=== TAM METİN ===
-
-Merhaba, bu bir test kaydıdır. Whisper AI kullanarak transkripsiyon yapıyoruz.
+Hello, this is a test recording. We are transcribing using Whisper AI.
 ```
-
-### 2. SRT Altyazı Dosyası (.srt) - Sadece -t parametresi ile
+### 2. SRT Subtitle File (.srt) - Only with -t parameter
 ```
 1
 00:00:00,000 --> 00:00:05,000
-Merhaba, bu bir test kaydıdır.
+Hello, this is a test recording.
 
 2
 00:00:05,000 --> 00:00:10,000
-Whisper AI kullanarak transkripsiyon yapıyoruz.
+We are transcribing using Whisper AI.
 ```
 
 ---
 
-## PERFORMANS İPUÇLARI
+## PERFORMANCE TIPS
 
-### Model Seçimi:
-- **Hızlı işlem için:** `tiny` veya `base`
-- **Kalite-hız dengesi:** `small`
-- **En iyi sonuç:** `medium` (önerilen)
-- **Profesyonel kullanım:** `large`
+### Model Selection:
+- **For fast processing:** `tiny` or `base`
+- **Quality-speed balance:** `small`
+- **Best results:** `medium` (recommended)
+- **Professional use:** `large`
 
-### İşlem Süreleri (yaklaşık):
-- **tiny**: 1 dakikalık ses = ~5 saniye
-- **base**: 1 dakikalık ses = ~10 saniye
-- **small**: 1 dakikalık ses = ~20 saniye
-- **medium**: 1 dakikalık ses = ~40 saniye
-- **large**: 1 dakikalık ses = ~2 dakika
+### Processing Times (approx.):
+- **tiny**: 1 minute of audio = ~5 seconds
+- **base**: 1 minute of audio = ~10 seconds
+- **small**: 1 minute of audio = ~20 seconds
+- **medium**: 1 minute of audio = ~40 seconds
+- **large**: 1 minute of audio = ~2 minutes
 
-**Not:** Süreler bilgisayar donanımına göre değişir.
+**Note:** Times vary depending on computer hardware.
 
-### Bellek Gereksinimleri:
+### Memory Requirements:
 - tiny/base: 1-2 GB RAM
 - small: 2-3 GB RAM
 - medium: 5-6 GB RAM
 - large: 10+ GB RAM
 
 ---
+## TROUBLESHOOTING
 
-## SORUN GİDERME
-
-### "openai-whisper paketi yüklü değil" hatası:
+### "openai-whisper package not installed" error:
 ```bash
 pip install openai-whisper
 ```
-
-### "torch" hatası:
+### "torch" error:
 ```bash
 pip install torch
 ```
+### Model cannot be downloaded:
+Check your internet connection. The model needs to be downloaded on the first use.
 
-### Model indirilemiyor:
-İnternet bağlantınızı kontrol edin. İlk kullanımda model indirilmesi gerekir.
+### Audio file not processed:
+- Ensure the file format is supported.
+- If the file path contains Turkish characters, replace them with English characters.
+- Ensure the file is not corrupted.
 
-### Ses dosyası işlenmiyor:
-- Dosya formatının desteklendiğinden emin olun
-- Dosya yolunda Türkçe karakter varsa İngilizce karakterle değiştirin
-- Dosyanın bozuk olmadığından emin olun
+### Running too slowly:
+- Use a smaller model (`-s tiny` or `-s base`).
+- Install CUDA for GPU support (optional, advanced).
 
-### Çok yavaş çalışıyor:
-- Daha küçük bir model kullanın (`-s tiny` veya `-s base`)
-- GPU desteği için CUDA yükleyin (opsiyonel, ileri seviye)
-
-### Yanlış dil tespit ediliyor:
-Dil parametresini açıkça belirtin: `-l tr`
-
----
-
-## DİL KODLARI
-
-Yaygın kullanılan dil kodları:
-
-- `tr` - Türkçe
-- `en` - İngilizce
-- `de` - Almanca
-- `fr` - Fransızca
-- `es` - İspanyolca
-- `it` - İtalyanca
-- `pt` - Portekizce
-- `ru` - Rusça
-- `zh` - Çince
-- `ja` - Japonca
-- `ko` - Korece
-- `ar` - Arapça
-
-Toplam 100+ dil desteklenmektedir.
+### Incorrect language detected:
+Explicitly specify the language parameter: `-l tr`
 
 ---
 
-## ÖRNEK KULLANIM SENARYOLARı
+## LANGUAGE CODES
 
-### Senaryo 1: Podcast Transkribe Etme
+Commonly used language codes:
+
+- `tr` - Turkish
+- `en` - English
+- `de` - German
+- `fr` - French
+- `es` - Spanish
+- `it` - Italian
+- `pt` - Portuguese
+- `ru` - Russian
+- `zh` - Chinese
+- `ja` - Japanese
+- `ko` - Korean
+- `ar` - Arabic
+
+A total of 100+ languages ​​are supported.
+## EXAMPLE USAGE SCENARIOS
+
+### Scenario 1: Transcribing a Podcast
 ```bash
-python transkript.py -i podcast.mp3 -o transkriptler/ -l tr -s medium -t
+python transcript.py -i podcast.mp3 -o transcripts/ -l tr -s medium -t
+```
+### Scenario 2: Meeting Recording
+```bash
+python transcript.py -i meeting.m4a -o meeting_notes/ -l tr -s small
 ```
 
-### Senaryo 2: Toplantı Kaydı
+### Scenario 3: Creating Video Subtitles
 ```bash
-python transkript.py -i toplanti.m4a -o toplanti_notlari/ -l tr -s small
+python transcript.py -i video.mp4 -o subtitles/ -l tr -s medium -t
 ```
 
-### Senaryo 3: Video Altyazısı Oluşturma
+### Scenario 4: Batch File Processing
 ```bash
-python transkript.py -i video.mp4 -o altyazilar/ -l tr -s medium -t
-```
-
-### Senaryo 4: Toplu Dosya İşleme
-```bash
-python transkript.py -i ses_arsivi/ -o tum_transkriptler/ -l tr -s base
+python transcript.py -i audio_archive/ -o all_transcripts/ -l tr -s base
 ```
 
 ---
 
-## SIK SORULAN SORULAR
+## FREQUENTLY FREQUENTLY ASKED QUESTIONS
 
-**S: İnternet bağlantısı gerekli mi?**
-C: Sadece ilk kurulum sırasında. Sonrasında tamamen offline çalışır.
+**Q: Is an internet connection required?**
+A: Only during the initial setup. After that, it works completely offline.
 
-**S: Ücretli mi?**
-C: Hayır, tamamen ücretsiz ve açık kaynak.
+**Q: Is it paid?**
+A: No, it's completely free and open source.
 
-**S: Kaç dakikalık ses işleyebilir?**
-C: Sınır yok. Saatlerce ses işleyebilir.
+**Q: How many minutes of audio can it process?**
+A: No limit. It can process hours of audio.
 
-**S: Doğruluk oranı ne kadar?**
-C: Kaliteli kayıtlarda %90-95. Gürültülü kayıtlarda %70-85.
+**Q: What is the accuracy rate?**
+A: 90-95% with high-quality recordings. 70-85% with noisy recordings.
 
-**S: GPU gerekli mi?**
-C: Hayır, CPU ile de çalışır. GPU varsa daha hızlı olur.
+**Q: Is a GPU required?**
+A: No, it also works with a CPU. It will be faster if you have a GPU.
 
-**S: Mac/Linux'ta çalışır mı?**
-C: Evet, Windows, Mac ve Linux desteklenir.
+**Q: Does it work on Mac/Linux?**
+A: Yes, Windows, Mac, and Linux are supported.
 
 ---
 
-## TEKNİK DETAYLAR
+## TECHNICAL DETAILS
 
-**Kullanılan Teknoloji:** OpenAI Whisper
-**Lisans:** MIT (Açık Kaynak)
-**Python Versiyonu:** 3.8+
-**Ana Bağımlılıklar:**
+**Technology Used:** OpenAI Whisper
+**License:** MIT (Open Source)
+**Python Version:** 3.8+
+**Main Dependencies:**
+
 - openai-whisper
+
 - torch
 - numpy
-- ffmpeg (otomatik yüklenir)
+
+- ffmpeg (automatically installed)
 
 ---
 
-## DESTEK VE GÜNCELLEMELER
+## SUPPORT AND UPDATES
 
-**Whisper Resmi Deposu:**
+**Official Whisper Repository:**
+
 https://github.com/openai/whisper
 
-**Python Resmi Sitesi:**
+**Official Python Website:**
+
 https://www.python.org/
 
 ---
 
+## RELEASE DATE
 
-## YAYIN TARİHİ
-
-Aralık 2024
+December 2024
 
 ---
 
-## HIZLI BAŞLANGIÇ ÖZETİ
+## QUICK START SUMMARY
 
-1. Python yükleyin
-2. `pip install openai-whisper` çalıştırın
-3. `python transkript.py -i ses.mp3 -o ciktilar/ -l tr` komutu ile başlayın
-4. Sonuçları `ciktilar/` klasöründe bulun
+1. Install Python
+2. Run `pip install openai-whisper`
+3. Run `python transcript.py -i audio.mp3 -o` Start with the command `ciktilar/ -l tr`
+4. Find the results in the `ciktilar/` folder
 
-İyi kullanımlar! 🎙️✨
+Enjoy! 🎙️✨
