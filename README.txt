@@ -305,12 +305,6 @@ https://www.python.org/
 
 ---
 
-## LİSANS
-
-Bu script MIT lisansı altında dağıtılmaktadır.
-OpenAI Whisper'ın lisansı için: https://github.com/openai/whisper/blob/main/LICENSE
-
----
 
 ## YAYIN TARİHİ
 
