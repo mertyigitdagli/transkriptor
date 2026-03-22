@@ -1,0 +1,21 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Sanal ortam (Virtual Environment)
+venv/
+env/
+.venv/
+
+# Whisper modelleri ve geçici dosyalar
+.cache/
+models/
+
+# Çıktı klasörleri (Opsiyonel: Transkriptlerin yüklenmesini istemiyorsan)
+transkriptler/
+altyazilar/
+
+# İşletim sistemi dosyaları
+.DS_Store
+Thumbs.db
